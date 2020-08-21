@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+
+require './lib/API.rb'
+require './lib/Flights.rb'
+require './lib/environment.rb'
+require './lib/CLI.rb'
+require './lib/Error.rb'
+
+
+
+cli = CliController.new 
+    cli.run
+
+
+
+

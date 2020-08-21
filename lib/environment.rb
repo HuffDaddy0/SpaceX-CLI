@@ -1,0 +1,6 @@
+require 'open-uri'
+require 'json'
+require 'net/http'
+require 'rainbow'
+require 'word_wrap/core_ext'
+#require './Gemfile'

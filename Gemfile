@@ -4,3 +4,8 @@ source "https://rubygems.org"
 gemspec
 
 gem "rake", "~> 12.0"
+gem 'pry'
+gem 'open-uri'
+gem 'json'
+#gem 'awesome_print'
+gem 'rainbow'
