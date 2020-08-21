@@ -1,8 +1,10 @@
 # Flatiron::SpaceX::CLI
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/Flatiron/SpaceX/CLI`. To experiment with that code, run `bin/console` for an interactive prompt.
+Thank you for trying the Space-X Launch CLI! This Command Line Interface allows the user to find location, and flight information regarding every launch done by SpaceX.
+Typing exit at any point while running the program will end the program, and typing main will return to the main selection area.
+This cli was created using the Unofficial SpaceX API found at https://api.spacexdata.com/v2/launches.
 
-TODO: Delete this and the text above, and describe your gem
+To start the CLI, please type bin/run
 
 ## Installation
 
@@ -19,10 +21,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install Flatiron-SpaceX-CLI
-
-## Usage
-
-TODO: Write usage instructions here
 
 ## Development
 

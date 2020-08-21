@@ -1,7 +1,6 @@
 class CliController
    #? controls the flow of the program while running    
-    #!word wrap
-#! git pushed, error when adding other files
+
 
 
 
@@ -53,6 +52,9 @@ class CliController
         puts "- to search by mission name"
          print Rainbow("'Random'").green 
          puts "-- to see a random launch"
+        print Rainbow("Typing ").orange
+        print Rainbow('Main ').green
+        puts Rainbow("at any point will return to this menu").orange
         get_input_main
     end
         
@@ -105,8 +107,10 @@ class CliController
         if Flights.find_by_year(input) == []
             puts Rainbow("SpaceX had no flights that year!").red
             year
-        elsif input == 'exit'
+        elsif input.downcase == 'exit'
             exit
+        elsif input.downcase == 'main'
+            run
         else
             print_minor(Flights.find_by_year(input))
         end
@@ -122,6 +126,8 @@ class CliController
             secondary_selection
          elsif input == 'Exit'
             exit
+        elsif input.downcase == 'main'
+            run
          else
             begin
             raise Error
@@ -153,9 +159,12 @@ class CliController
             # Flights.find_by_flight_number(input2)
         elsif input == 'exit'
             exit
+        elsif input.downcase == 'main'
+            run
         else
+            begin
             raise Error
-                begin        
+                     
             rescue Error => error
              Error.invalid_input
              success_failure
@@ -169,6 +178,10 @@ class CliController
         if valid?(input)
             print_major(Flights.find_by_number(input))
             more?
+        elsif input.downcase == 'main'
+            run
+        elsif input.downcase == 'exit'
+            exit
         else
             begin
                 raise Error
@@ -202,7 +215,29 @@ class CliController
     end
 
     def random
-       puts Rainbow("RaNdOmIzInG...").blink.orange
+
+       puts Rainbow("                                       _,'/").yellow
+       puts Rainbow("                                  _.-''._:").yellow
+       puts Rainbow("  RaNdOmIzInG...          ,-:`-.-'    .:.|").yellow
+       puts Rainbow("                         ;-.''       .::.|").yellow
+       puts Rainbow("          _..------.._  / (:.       .:::.|").yellow
+       puts Rainbow("       ,'.   .. . .  .`/  : :.     .::::.|").yellow
+       puts Rainbow("     ,'. .    .  .   ./    \\ ::. .::::::.|").yellow
+       puts Rainbow("   ,'. .  .    .   . /      `.,,::::::::.;\\").yellow
+       puts Rainbow("  /  .            . /       ,',';_::::::,:_:").yellow
+       puts Rainbow(" / . .  .   .      /      ,',','::`--'':;._;").yellow
+       puts Rainbow(": .             . /     ,',',':::::::_:'_,'").yellow
+       puts Rainbow("|..  .   .   .   /    ,',','::::::_:'_,'").yellow
+       puts Rainbow("|.              /,-. /,',':::::_:'_,'").yellow
+       puts Rainbow("| ..    .    . /) /-:/,'::::_:',-'").yellow
+       puts Rainbow(": . .     .   // / ,'):::_:', ' ;").yellow
+       puts Rainbow(" \\ .   .     // /,' /,-.','   ./").yellow
+       puts Rainbow("  \\ . .  `::./,// ,'' ,'   .  /").yellow
+       puts Rainbow("   `. .    . `;;;,/_.'' . . ,'").yellow
+       puts Rainbow("     ,`. .   :;;' `:.  .  ,'").yellow
+       puts Rainbow("    /   `-._,'  ..  ` _.-'").yellow
+       puts Rainbow("   (     _,'``------''  SSt").yellow
+       puts Rainbow("    `--''").yellow
        sleep(03)
        print_major(Flights.random_flight)
        more?
@@ -211,32 +246,34 @@ class CliController
     def print_major(flight)
         #binding.pry
         puts ""
-        puts Rainbow("Flight #{flight.flight_number}. Mission: #{flight.mission_name}").darkblue
+        puts Rainbow("Launch #{flight.flight_number}. Mission: #{flight.mission_name}").orange
         puts Rainbow("This mission took place on #{flight.launch_date}, and launched from #{flight.launch_site}.")
-        puts Rainbow("This flight used the #{flight.rocket} booster, and #{flight.payload} type payload.")
+        puts Rainbow("The launch used the #{flight.rocket} booster, and #{flight.payload} type payload.")
             if flight.crew != nil
                 puts "Crew: #{flight.crew}"
             end
             if flight.launch_success == true
                 puts Rainbow("#{flight.mission_name} was deemed a successful mission.").green
-                puts ("#{flight.official_details}")   #!WordWrap?
+                puts ("#{flight.official_details}")   
             else
                 puts Rainbow("#{flight.mission_name} was deemed a failed mission.").red
-                puts Rainbow("#{flight.launch_failure_details_expand}")   #! WordWrap?
-                puts Rainbow("#{flight.official_details}")
+                puts "#{flight.launch_failure_details_expand}"  
+                puts "#{flight.official_details}"
             end
         puts "#{}"
     end
 
     def secondary_selection
         puts ""
-        puts Rainbow("Please enter a flight number to see more info").orange
+        puts Rainbow("Please enter a launch number to see more info").orange
         input = gets.chomp
         if valid?(input)
             print_major(Flights.find_by_number(input))
             more?
         elsif input == 'exit'
             exit
+        elsif input.downcase == 'main'
+            run
         else 
             begin
                 raise Error
