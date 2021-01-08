@@ -1,11 +1,8 @@
 #!/usr/bin/env ruby
 
-#require_relative './setup'
-#require './lib/API.rb'
-#require './lib/Flights.rb'
+
 require './lib/environment.rb'
-#require './lib/CLI.rb'
-#require './lib/Error.rb'
+
 
 
 

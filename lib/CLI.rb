@@ -104,7 +104,7 @@ class CliController
     def year
         puts Rainbow("Please enter a year. [2006-Present]").orange
         input = gets.chomp
-        if Flights.find_by_year(input) == []
+        if Flights.find_by_year(input) == []  #! shorten?
             puts Rainbow("SpaceX had no flights that year!").red
             year
         elsif input.downcase == 'exit'
@@ -206,7 +206,7 @@ class CliController
         data.each do |data| 
             if counter.even?
                 puts Rainbow("#{data.flight_number}. #{data.mission_name}, (#{data.launch_year})").blue
-                counter += 1
+                counter += 1 #! move outside
             else
                 puts Rainbow("#{data.flight_number}. #{data.mission_name}, (#{data.launch_year})").lightblue
                 counter +=1
@@ -306,4 +306,8 @@ class CliController
         end
     end
 end
+
+
+
+
 
