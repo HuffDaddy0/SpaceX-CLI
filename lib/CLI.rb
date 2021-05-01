@@ -1,9 +1,5 @@
 class CliController
-   #? controls the flow of the program while running    
-
-
-
-
+#? controls the flow of the program while running    
     def initialize
         Api.new
         puts Rainbow(" ----------------------------------- ").blue
@@ -35,6 +31,7 @@ class CliController
         sleep(03)
     end
 
+#? iniitalizes "home screen" of application 
     def run
         puts ""
         puts Rainbow("Please Enter:").orange
@@ -58,6 +55,8 @@ class CliController
         get_input_main
     end
         
+#? gets user input at main menu and redirects
+#? to next menu
       def get_input_main
         input = gets.chomp.downcase
         case input
@@ -78,15 +77,16 @@ class CliController
         when 'exit'
             exit
         else 
-           begin
+            begin
                raise Error
-           rescue Error => error
-            Error.invalid_input
-            get_input_main
-           end
+            rescue Error => error
+                Error.invalid_input
+                get_input_main
+            end
         end
     end
 
+#? validates user input when selecting flight number
     def valid?(input)
         input = input.to_i
         if input > 0 && input <= Flights.all.length
@@ -96,15 +96,17 @@ class CliController
         end
     end
 
+#? prints list of flights and listens for next input
     def flight_list
         print_minor(Flights.all)
         secondary_selection
     end
 
+#? gets year input from user, checks for flights, returns based
     def year
         puts Rainbow("Please enter a year. [2006-Present]").orange
         input = gets.chomp
-        if Flights.find_by_year(input) == []  #! shorten?
+        if Flights.find_by_year(input) == []
             puts Rainbow("SpaceX had no flights that year!").red
             year
         elsif input.downcase == 'exit'
@@ -154,9 +156,6 @@ class CliController
         elsif input == 'fail'
             print_minor(Flights.find_by_failure)
             secondary_selection
-            # puts "select a flight by number to see more infomation."
-            # input2 = gets.chomp
-            # Flights.find_by_flight_number(input2)
         elsif input == 'exit'
             exit
         elsif input.downcase == 'main'

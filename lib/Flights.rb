@@ -1,5 +1,5 @@
 class Flights
-#! creates and stores instances of each individual flight with info
+#? creates and stores instances of each individual flight with info
     
     attr_accessor :flight_number, :mission_name, :rocket, :is_tentative, :launch_year,
      :launch_success, :launch_site, :launch_date, :details, :crew, :launch_failure_details,
@@ -15,14 +15,6 @@ class Flights
     def self.all
          @@all
     end
-
-    #def launch_site
-     #   @launch_site["site_name_long"]
-    #end
-
-    #def rocket
-    #    @rocket["rocket_name"]
-    #end
 
     def launch_date
         cut_time = @launch_date.split('T')
@@ -70,10 +62,6 @@ class Flights
     def self.find_by_year(year)
         self.all.find_all {|f| f.launch_year == year}
     end
-
-   # def self.flight_list
-    #     self.all.each.with_index(1) {|f, i| puts "#{i}. #{f.mission_name}, (#{f.launch_year})"}
-#   end
 
     def self.random_flight
         self.find_by_number(rand(1..(Flights.all.length+1)))

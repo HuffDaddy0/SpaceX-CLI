@@ -4,19 +4,16 @@ class Api
 #? Pulls data from API and creates flights
     attr_accessor :info
 
-    #URL = api.spacexdata.com/v2/launches
 
     def initialize
         uri = URI.parse('https://api.spacexdata.com/v2/launches')
         response = Net::HTTP.get_response(uri)
         @info = JSON.parse(response.body)
         self.create_flights
-#        binding.pry
     end
 
     def create_flights
         @info.each do |flight|
-            #binding.pry
             hash = {flight_number: flight['flight_number'],
                 launch_year: flight['launch_year'],
                 mission_name: flight['mission_name'],
@@ -35,6 +32,3 @@ class Api
     end
 
 end
-
-#:flight_number, :mission_name, :rocket, :is_tentative, :launch_year,
-#:launch_success, :launch_site, :launch_date, :details, :crew, :launch_failure_details
